@@ -58,6 +58,26 @@ button:active {
     transform: scale(0.95);
 }
 
+/* Mode sombre */
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode .container {
+    background: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.dark-mode button {
+    background: #333;
+}
+
+.dark-mode button:hover {
+    background: #555;
+}
+
 /* Animation d'apparition */
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;

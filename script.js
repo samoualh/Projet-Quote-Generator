@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const newQuoteBtn = document.getElementById("new-quote");
     const copyBtn = document.getElementById("copy-quote");
     const tweetBtn = document.getElementById("tweet-quote");
+    const darkModeBtn = document.getElementById("toggle-dark-mode");
     const container = document.querySelector(".container");
 
     // Liste de couleurs pour le fond
@@ -50,10 +51,22 @@ document.addEventListener("DOMContentLoaded", () => {
         window.open(twitterUrl, "_blank");
     }
 
+    // Fonction pour basculer le mode sombre
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+    }
+
+    // Vérifier si le mode sombre était activé auparavant
+    if (localStorage.getItem("dark-mode") === "enabled") {
+        document.body.classList.add("dark-mode");
+    }
+
     // Événements
     newQuoteBtn.addEventListener("click", fetchQuote);
     copyBtn.addEventListener("click", copyQuote);
     tweetBtn.addEventListener("click", tweetQuote);
+    darkModeBtn.addEventListener("click", toggleDarkMode);
 
     // Charger une citation au démarrage
     fetchQuote();
