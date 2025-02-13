@@ -12,6 +12,7 @@ Les citations sont récupérées depuis l’API **Quotable**.
 - Changement de couleur de fond à chaque citation.
 - Effet de transition sur le texte lors du changement de citation.
 - **Mode sombre** pour une meilleure expérience de lecture dans des environnements peu éclairés.
+- **Choix de la catégorie de citation** pour afficher des citations selon des thèmes spécifiques.
 
 ## 🔧 Installation
 
