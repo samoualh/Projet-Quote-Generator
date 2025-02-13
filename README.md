@@ -11,16 +11,20 @@ Les citations sont récupérées depuis l’API **Quotable**.
 - Bouton **"Tweeter"** pour partager la citation sur Twitter.
 - Changement de couleur de fond à chaque citation.
 - Effet de transition sur le texte lors du changement de citation.
+- **Mode sombre** pour une meilleure expérience de lecture dans des environnements peu éclairés.
 
 ## 🔧 Installation
 
 1. **Cloner le projet** :
+
    ```sh
    git clone https://github.com/ton-nom/quote-generator.git
    cd quote-generator
-2. **Ouvrir le fichier index.html dans un navigateur.** <br>
+
+2. **Ouvrir le fichier index.html dans un navigateur.**  
+
 ## 🛠 Technologies
 
 - HTML / CSS : Structure et design.
 - JavaScript : Gestion des événements et récupération des citations via API.
-- Quotable API : Source des citations (https://api.quotable.io/random).
+- Quotable API : Source des citations (<https://api.quotable.io/random>).
