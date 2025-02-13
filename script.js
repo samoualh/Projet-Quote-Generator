@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyBtn = document.getElementById("copy-quote");
     const tweetBtn = document.getElementById("tweet-quote");
     const darkModeBtn = document.getElementById("toggle-dark-mode");
+    const categorySelect = document.getElementById("quote-category");
     const container = document.querySelector(".container");
 
     // Liste de couleurs pour le fond
@@ -13,7 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fonction pour récupérer une citation
     async function fetchQuote() {
         try {
-            const response = await fetch("https://api.quotable.io/random");
+            const category = categorySelect.value;
+            let apiUrl = "https://api.quotable.io/random";
+
+            if (category === "motivational") {
+                apiUrl += "?tags=motivational";
+            } else if (category === "philosophical") {
+                apiUrl += "?tags=philosophy";
+            } else if (category === "humor") {
+                apiUrl += "?tags=humor";
+            } else if (category === "movies") {
+                apiUrl += "?tags=famous-quotes";
+            }
+
+            const response = await fetch(apiUrl);
             const data = await response.json();
 
             // Ajout d'un effet de transition
@@ -35,22 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Fonction pour copier la citation
-    function copyQuote() {
-        const textToCopy = `${quoteText.textContent} ${authorText.textContent}`;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            alert("Citation copiée !");
-        });
-    }
-
-    // Fonction pour tweeter la citation
-    function tweetQuote() {
-        const text = quoteText.textContent;
-        const author = authorText.textContent;
-        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + " " + author)}`;
-        window.open(twitterUrl, "_blank");
-    }
-
     // Fonction pour basculer le mode sombre
     function toggleDarkMode() {
         document.body.classList.toggle("dark-mode");
@@ -64,9 +62,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Événements
     newQuoteBtn.addEventListener("click", fetchQuote);
-    copyBtn.addEventListener("click", copyQuote);
-    tweetBtn.addEventListener("click", tweetQuote);
+    copyBtn.addEventListener("click", () => {
+        const textToCopy = `${quoteText.textContent} ${authorText.textContent}`;
+        navigator.clipboard.writeText(textToCopy).then(() => alert("Citation copiée !"));
+    });
+    tweetBtn.addEventListener("click", () => {
+        const text = quoteText.textContent;
+        const author = authorText.textContent;
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + " " + author)}`;
+        window.open(twitterUrl, "_blank");
+    });
     darkModeBtn.addEventListener("click", toggleDarkMode);
+    categorySelect.addEventListener("change", fetchQuote);
 
     // Charger une citation au démarrage
     fetchQuote();
